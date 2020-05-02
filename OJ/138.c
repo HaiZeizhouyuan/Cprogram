@@ -1,23 +1,21 @@
 /*************************************************************************
-	> File Name: 137.c
+	> File Name: 138.c
 	> Author: 
 	> Mail: 
-	> Created Time: Sat May  2 22:25:29 2020
+	> Created Time: Sat May  2 23:31:50 2020
  ************************************************************************/
 
 #include<stdio.h>
-int main() {
-    char a = 'A';
+int main(){
     int n;
     scanf("%d", &n);
-    for (int i = 0; i < n; i++){
-        for(int j = 0; j < n - i; j++){
-            if(j < n -i - 1){
-                printf("%c", a);
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < 2 * (n - i); j++){
+            if(j < (2 * (n - i) - 1)){
+                printf("%s", "A");
             }else{
-                printf("%c\n", a);
+                printf("%s\n", "A");
             }
-            a++;
         }
     }
     return 0;
