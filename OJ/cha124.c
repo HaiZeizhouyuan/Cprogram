@@ -6,11 +6,13 @@
 */
 
 #include <stdio.h>
+int check(int a, int b, int c,int d){
+    return (1 <= a || b <= 50) && ( c <= 25 || 5 <= d);
+}
 int main(){
 	int a, b, c, d;
 	scanf("%d%d%d%d", &a, &b, &c, &d);
-	if(((1 <= a && a <= 2) || (1 <= b  && b <= 50)) && ((10<= c && c <= 25 )|| (5 <= d && d <=30))) printf("%s\n","ok");
-	else printf("%s\n", "pass");
+    printf("%s\n", check(a, b, c, d) ? "ok" : "pass");
 
 	return 0;
 }

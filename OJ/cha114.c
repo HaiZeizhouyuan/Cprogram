@@ -6,14 +6,31 @@
 */
 
 #include <stdio.h>
+void output(char x) {
+    switch (x) {
+        case 'h':
+            printf("He\n");
+            break;
+        case 'l':
+            printf("Li\n");
+            break;
+        case 'c':
+            printf("Cao\n");
+            break;
+        case 'd':
+            printf("Duan\n");
+            break;
+        case 'w':
+            printf("Wang\n");
+            break;
+        default:
+            printf("Not Here\n");
+            break;
+    }
+}
 int main(){
 	char x;
 	scanf("%c", &x);
-	if(x == 'h') printf("%s\n","He");
-	else if(x == 'l') printf("%s\n", "Li");
-	else if(x == 'c') printf("%s\n", "Cao");
-	else if(x == 'd') printf("%s\n", "Duan");
-	else if(x == 'w') printf("%s\n", "Wang");
-	else printf("%s\n","Not Here");
+    output(x);
 	return 0;
 }

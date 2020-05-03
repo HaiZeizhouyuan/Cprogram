@@ -6,40 +6,36 @@
  ************************************************************************/
 
 #include<stdio.h>
-int chh(int n){
-    int a, b, c, d, e;
-    a = n / 10000;
-    b = n % 10000 / 1000;
-    c = n % 10000 % 1000 / 100;
-    d = n % 10000 % 1000 % 100 / 10;
-    e = n % 10000 % 1000 % 100 % 10 / 1;
-    if(a == e && b == d){
-        return 1;
-    } else {
-        return 0;
-    }
+#define swap(a, b){\
+  _type(a) _temp = a;\
+  a = b; b = _temp;\
 }
+int chh(int n){
+    int sum = 0, temp = n;
+    while (temp) {
+        sum = sum * 10 + temp % 10;
+        temp /= 10;
+    }
+    return sum == n;
+}
+
 int chk(int n){
-    int i;
-    for(i = 2; i < n; i++ ){
-        if(n % i == 0){
-            return 0;
-        }
+    for(int i = 2; i * i <= n; i++ ){
+        if(n % i == 0) return 0;    
     }
     return 1;
 }
+
 int main(){
     int a, b;
     scanf("%d%d", &a, &b);
-    int i, k = 0;
-    for(i = a; i <= b; i++){
-        if(chh(i) == 1 && chk(i) == 1){
-            if(k == 1){
-                printf(" ");
-            }
+    int flag = 0;
+    for(int i = a; i <= b; i++){
+        if(chh(i) && chk(i)){
+            (flag ++) && printf(" ");
             printf("%d", i);
-            k = 1;
         }
     }
+    printf("\n");
     return 0;
 }

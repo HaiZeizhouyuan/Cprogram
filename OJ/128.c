@@ -6,13 +6,11 @@
  ************************************************************************/
 
 #include<stdio.h>
-int main(){
-    int n;
+int main() {
+    int n, m;
     scanf("%d", &n);
-    int i;
     int sum = 0;
-    for(i = 0; i < n; i++){
-        int m;
+    for (int i = 0; i < n; i++) {
         scanf("%d", &m);
         sum += m;
     }

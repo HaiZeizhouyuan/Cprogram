@@ -14,25 +14,18 @@ int main(){
             printf(" ");
         }
         for(int j = 0; j < 2 + 2 * i; j++){
-            if( j < (2 * ( 1 + i ) - 1)){
-                printf("%s", "A");
-            }else{
-                printf("%s\n", "A");
-            }
-        } 
+            printf("%s", "A");
+        }
+        printf("\n");
     }
     for(int i = 0; i < (n-1); i++){
         for(int k = 0; k < 1 + i; k++){
             printf(" ");
         }
         for(int j = 0; j < 2 * (n -1 - i); j++){
-            if(j < 2 * (n -1 -i) - 1){
                 printf("%s", "A");
-            }else{
-                printf("%s\n", "A");
-
-            }
         }
+        printf("\n");
     }
     return 0;
 }
