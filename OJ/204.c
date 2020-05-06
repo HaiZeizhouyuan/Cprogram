@@ -1,25 +1,24 @@
 /*************************************************************************
-	> File Name: 448.c
+	> File Name: 204.c
 	> Author: 
 	> Mail: 
-	> Created Time: Wed May  6 23:08:39 2020
+	> Created Time: Wed May  6 23:22:05 2020
  ************************************************************************/
 
 #include<stdio.h>
 int main(){
     int n;
     scanf("%d", &n);
-    int num[105];
+    int sum[n + 5][n + 5];
     for (int i = 0; i < n; i++) {
-    scanf("%d", &num[i]);
-    }
-    int m, k = 0;
-    scanf("%d", &m);
-    for (int i = 0; i < n; i++) {
-        if (num[i] == m) {
-            k = i + 1;
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &sum[i][j]);
         }
     }
-    printf("%d\n", k);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            i == j && printf("%d\n",sum[i][j]);
+        }
+    }
     return 0;
 }

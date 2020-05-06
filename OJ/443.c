@@ -1,34 +1,27 @@
 /*************************************************************************
-	> File Name: 443.c
+	> File Name: 448.c
 	> Author: 
 	> Mail: 
-	> Created Time: Sat May  2 20:39:21 2020
+	> Created Time: Wed May  6 11:33:29 2020
  ************************************************************************/
 
 #include<stdio.h>
-#define max_n 10000
-int arr[max_n + 5] = {0};
-void chang_flag(int a, int b){
-    for(int i = a; i <= b; i++){
-        arr[i] = 1;
-    }
-    return ;
-}
-int cnt_num(int l){
-    int cnt = 0;
-    for(int i = 0; i <= l; i++){
-        cnt += (!arr[i]);
-
-    }
-    return cnt;
-}
 int main(){
-    int m, n;
-    for(int i = 0; i < n; i++){
-        int a, b;
-        scanf("%d%d" ,&a ,&b);
-        chang_flag(a, b);
-        printf("%d\n", cnt_num(m));
-        return 0;
+    int l, m;
+    scanf("%d%d", &l, &m);
+    int o[10005], e[10005], sum[10005] = {0} ;
+    for (int i = 0; i < m; i++) {
+        scanf("%d%d", &o[i], &e[i]);
+        for (int j = o[i]; j < (e[i] + 1); j++) {
+            sum[j] = 1;
+        }
     }
+    int num = 0;
+    for (int i = 0; i < l + 1; i++) {
+        if (sum[i] == 0) {
+            num ++;
+        }
+    }
+    printf("%d\n", num);
+    return 0;
 }

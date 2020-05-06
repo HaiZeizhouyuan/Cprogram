@@ -43,12 +43,13 @@ int main(){
     }
     printf("\n");
     printf("even value is: %d\n", cnt);
-    int digit = 0,n;
+    int digit = 0, num, n;
     scanf("%d", &n);
-    while(n){
+    num = n;
+    do{
         digit ++;
         n /= 10;
-    }
-    printf("%d has dights %d\n"，num, cnt );
+    }while(n);
+    printf("%d has %d dights\n",num, digit);
     return 0;
 }
