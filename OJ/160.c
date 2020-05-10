@@ -9,10 +9,10 @@
 #include<math.h>
 #define PI 3.14
 int main(){
-    double r,h,s,S;
+    double r,h,S1,S2;
     scanf("%lf%lf", &r ,&h);
-    s = PI * r * r / 2 + 2 * r * 2 * r / 2;
-    S = 2 * s + h * (2 * r * PI / 2 + 2 * r + sqrt(4 * r * r + 4 * r * r));
-    printf("%.2f\n", S);
+    S1 = (PI  / 2 + 2 ) * pow(r ,2);
+    S2 = h * (r * (PI + 2 ) + sqrt(8 * pow(r, 2)));
+    printf("%.2f\n", 2 * S1 + S2);
     return 0;
 }
