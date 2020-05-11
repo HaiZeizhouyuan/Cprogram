@@ -10,10 +10,10 @@
 #include <stdlib.h>
 #define max_n 16
 char name[max_n][20] = {"杨宇晨","严志伟","何进康","刘雨欣", "吴根胜", "周缘", "张晓宇","张本超","张芝涵", "张雨桐", "曹政", "樊帅鹏","艾艺", "郑佳伟", "魏嘉瑞", "黄啸峰"};
-int flag[amx_n] = {0};
+int flag[max_n] = {0};
 void output_name(int n){
     srand(time(0));
-    for (int i = 0; i < n) {
+    for (int i = 0; i < n; ) {
         int index = rand() % max_n;
         if (flag[index]) continue;
         printf("%s", name[index]);
@@ -34,13 +34,13 @@ int main(int argc, char *argv[]){
     if (argc < 2) {
         output_name(1);
     } else {
-        sprintf(str, "%s", arg[1]);
+        sprintf(str, "%s", argv[1]);
         int n = str_to_int(str);
         if (n > max_n) {
             printf("total num: %d\n", max_n);
             exit(0);
         }
-        output_name((int)argv[0]);
+        output_name(0);
     }
     return 0;
 }
