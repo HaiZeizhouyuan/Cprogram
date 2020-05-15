@@ -6,22 +6,25 @@
  ************************************************************************/
 
 #include<stdio.h>
-void filter(int n, int m) {
-    for (int i = n; i < m + 1; i++) {
-        if(check(i) == 1) printf("%d\n", i);
+#define max_n 1000000
+
+int num[max_n + 5] = {0};
+
+void prime() {
+    for (long long i = 2; i < max_n + 1; i++) {
+    if (num[i]) continue;
+        for (long long j = i * i; j < max_n + 1; j += i) {
+            num[j] = 1;
+        }
     }
-}
-int check(int x) {
-    int flag = 0;
-    for (int i = 2; i < x; i++){
-        if (x % i == 0) flag = 1;
-    }
-    if (flag) return 0;
-    return 1;
+    return ;
 }
 int main() {
-    int n, m;
-    scanf("%d%d", &n, &m);
-    filter(n, m);
+    long long  n, m;
+    scanf("%lld%lld", &n, &m);
+    prime();
+    for (long long  j = m; j < n + 1; j ++ ) {
+        !num[j] && printf("%lld\n", j);
+    }
     return 0;
 }
