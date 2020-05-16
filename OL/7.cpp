@@ -6,7 +6,7 @@
  ************************************************************************/
 
 #include<stdio.h>
-#define max_n 105000
+#define max_n 105000 
 long long prime[max_n + 5] = {0};
 
 void init_prime(){

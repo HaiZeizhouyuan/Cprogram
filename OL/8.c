@@ -7,7 +7,7 @@
 
 #include<stdio.h>
 #include<string.h>
-#define max_n 1000;
+#define max_n 1000
 
 char num[max_n + 5];
 int main() {
@@ -23,6 +23,6 @@ int main() {
         else zero -= 1;
         if (zero == 0 && p > ans) ans = p;
     }
-    printf("%lld\n", ans)
+    printf("%lld\n", ans);
     return 0;
 }
