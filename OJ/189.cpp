@@ -7,12 +7,12 @@
 
 #include<stdio.h>
 #define max_n 1000000
-long long check(long long *arr, long long x, long long first, long long last) {
+inline long long check(long long *arr, long long x, long long first, long long last) {
     long long mid;
-    mid = (first + last) >> 2;
+    mid = (first + last) >> 1;
     if(first > last) return 0; 
-    if (x == mid) return mid;
-    if (x < mid) last = mid - 1;
+    if (x ==  arr[mid]) return mid;
+    if (x < arr[mid]) last = mid - 1;
     else first = mid + 1;
     return check(arr, x, first, last);
 }
@@ -29,7 +29,7 @@ int main(){
         scanf("%lld", &num[i]);
     }
     for (long long i = 0; i < k; i++) {
-        printf("%lld", check(arr, num[i], arr[1], arr[n]));
+        printf("%lld", check(arr, num[i], 1, n));
         (i - k + 1) && printf(" ");
     }
     printf("\n");

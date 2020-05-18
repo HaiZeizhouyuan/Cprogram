@@ -13,15 +13,13 @@
     __typeof(b) __b = (b);\
     __a > __b ? __a : __b;\
 })
-char num[max_n + 5];
+int num[max_n + 5][max_n + 5];
 inline void checkd() {
     int len = 0;
-    while (~scanf("%s", num + len)) len += strlen(num + len);
     long long d, r, rd, ro, maxd = 0, D;
     for (int i = 0; i < 20; i++) {
         for (int j = 0; j < 20; j++) {
-            printf("%d ", num[i][j]);
-            !(j - 19) && printf("\n");
+            scanf("%d ", &num[i][j]);
         }
     }
     for (int i = 3; i < 17; i++) {
@@ -33,7 +31,6 @@ inline void checkd() {
             D = MAX(MAX(d, r), MAX(rd, ro));
             if (D > maxd) maxd = D;
         }
-        printf("%lld\n", maxd);
     }
     for (int i = 0; i < 3 ; i++) {
         for (int j = 0; j < 17; j++) {
@@ -43,14 +40,12 @@ inline void checkd() {
             D = MAX(MAX(d, r), rd);
             if (D > maxd) maxd = D;
         }
-        printf("%lld\n", maxd); 
     }
     for (int i = 0; i < 17; i++) {
         for (int j = 17; j < 20; j++) {
             d = num[i][j] * num[i + 1][j] * num[i+ 2][j] * num[i + 3][j];
             if (d > maxd) maxd = d;
         }
-        printf("%lld\n", maxd);
         
     }
     for (int i = 17; i < 20 ; i++) {

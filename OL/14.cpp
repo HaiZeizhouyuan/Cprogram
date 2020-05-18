@@ -6,25 +6,22 @@
  ************************************************************************/
 
 #include<stdio.h>
-#define max_n 10
-inline void len() {
-    long long num = 1, max = 0, maxi, m = 2;
-    for (int i = 2; i < max_n; i++) {
-        m = i;
-        while(m > 1) {
-            if (m % 2 == 0) m /= 2;
-            else m = (3 * m + 1);
-            num++;
-        }
-        if (num > max){
-            max = num;
-            maxi = i;
-        } 
-    }
-    printf("%lld\n", num);
+#define max_n 1000000
 
+typedef long long ll;
+ll get_len(ll n) {
+    if (n == 1) return 1;
+    if (n & 1) return get_len(3 * n + 1) + 1;
+    return get_len(n >> 1) + 1;
 }
 int main () {
-    len();
+    int ans = 0, len = 0;
+    for (int i = 1; i < max_n; i++) {
+        int tmp = get_len(i);
+        if (tmp <= len) continue;
+        ans = i;
+        len = tmp;
+    }
+    printf("%d\n", ans);
     return 0;
 }
