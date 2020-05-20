@@ -7,6 +7,7 @@
 
 #include<iostream>
 #include<algorithm>
+#include<string.h>
 #define max_n 100
 using namespace std;
 
