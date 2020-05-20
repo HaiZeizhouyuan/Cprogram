@@ -12,7 +12,7 @@ int main(){
     long long b = pow(2, 31) + pow (2, 12) +pow(2,10) + pow(2, 8) + pow(2,1) + pow(2, 0);
     long long c = pow(2, 6) + pow(2, 7) + pow(2,11) + pow(1,13) + pow(2, 15) + pow(2, 24);
     long long d = pow(2, 6) + pow(2, 7) + pow(2,11) + pow(1,13) + pow(2, 15) + pow(2, 25);
-    long long e =pow(2, 0) + pow(2, 1) + pow(2, 8) + pow(2, 10) + pow(2, 12) +pow(2, 31);
+    long long e =pow(2, 7) + pow(2, 16) + pow(2, 18) + pow(2, 20) + pow(2, 24) +pow(2, 25);
 
 
     printf("%lld\n%lld\n%lld\n%lld\n%lld\n", a, b, c, d, e);
