@@ -6,44 +6,38 @@
  ************************************************************************/
 
 #include<iostream>
+#include <string.h>
 using namespace std;
 #define max_n 100000
 
-int num1[max_n + 5] = {0};
-int num2[max_n + 5] = {0};
+int num[max_n + 5] = {0};
 
-
-inline void find (int *num1, int *num2, int m, int n) {
-    for (int i = 0; i < m; i++) {  
-        int f = 0, t = n - 1, x = num2[i] ;
-        while (t - f) {
-            int mid = (f + t) >> 1;
-            if (num1[mid] > x) {
-                t = mid;
-            } else {
-                f = mid;
-            }
-        }
-        if (f > x) {
-            cout << num1[0] << endl;
-        } else {
-            cout << num1[f];
-        }
-        (i - m + 1) && (cout << " ");
+inline int binary_search(int *arr, int n, int x) {
+    int head = -1, tail = n - 1, mid;
+    while(head < tail){
+        mid = (head + tail + 1) >> 1;
+        if (arr[mid] > x) tail = mid - 1;
+        else head = mid;
     }
-    cout << endl;
+    return head; 
 }
 
 
 int main(){
-    int n, m;
+    int n, m, temp;
     cin >> n >> m;
     for (int i = 0; i < n; i++) {
-        cin >> num1[i];
+        cin >> num[i];
     }
+    int a = num[0];
     for (int i = 0; i < m; i++) {
-        cin >> num2[i];
+        cin >> temp;
+        i && cout << " ";
+        int b = binary_search(num, n, temp);
+        if (b == -1) cout << a;
+        else cout << num[b]; 
     }
-    find(num1, num2, m, n);
+    cout << endl;
+
     return 0;
 }

@@ -9,32 +9,28 @@
 #include<string.h>
 #define max_n 101
 
-char str[max_n + 5] = {0};
-int max(int a, int b){
-    if(a > b) return a;
-    else return b;
-}
+char str[max_n + 5];
+int arr[max_n + 5] = {1, 0};
 
 int main(){
     for (int i = 0; i < 2; i++) {
         scanf("%s", str);
         int len = strlen(str);
-        if (len > str[0])str[0] = len;
-        for (int j = 0; str[j]; j++) {
-            str[len - j] = (str[i] - '0');
+        if (len > arr[0]) arr[0] = len;
+        for (int i = 0; str[i]; i++) {
+            arr[len - i] += (str[i] - '0');
         }
-        for (int i = 1; i <= str[0]; i++) {
-            if(str[i] < 10) continue;
-            str[i + 1] += str[i] / 10;
-            str[i] %= 10;
-            str[0] += (i == str[0]);
+        for (int i = 1; i <= arr[0]; i++) {
+            if(arr[i] < 10) continue;
+            arr[i + 1] += arr[i] / 10;
+            arr[i] %= 10;
+            arr[0] += (i == arr[0]);
         }
     }
-    for (int i = str[0]; i > str[0] - 10; i--){
-        printf("%d\n", str[i]);
+    for (int i = arr[0]; i > 0; i--){
+        printf("%d", arr[i]);
     }
-
-
+    printf("\n");
     return 0;
 }
 
