@@ -5,16 +5,24 @@
 	> Created Time: Sun May  3 17:29:50 2020
  ************************************************************************/
 #include <stdio.h>
-#include <string.h>
-#include <math.h>
+#define max_n 100
+int prime[max_n + 5]={0};
+
+void init_prime() {
+    for (int i = 2; i < max_n; i++) {
+        if (!prime[i]) prime[++prime[0]] = i;
+        for (int j = 1; j <= prime[0]; j++) {
+            if (i * prime[j] > max_n) break;
+            prime[i * prime[j]] = 1;
+            if (i % prime[j] == 0) break;
+        }
+    }
+}
+
 int main(){
-    long long a = pow (2, 31) + pow(2,30) + pow(2, 23)  + pow(2, 21) + pow (2, 19) + pow (2, 0);
-    long long b = pow(2, 31) + pow (2, 12) +pow(2,10) + pow(2, 8) + pow(2,1) + pow(2, 0);
-    long long c = pow(2, 6) + pow(2, 7) + pow(2,11) + pow(1,13) + pow(2, 15) + pow(2, 24);
-    long long d = pow(2, 6) + pow(2, 7) + pow(2,11) + pow(1,13) + pow(2, 15) + pow(2, 25);
-    long long e =pow(2, 7) + pow(2, 16) + pow(2, 18) + pow(2, 20) + pow(2, 24) +pow(2, 25);
-
-
-    printf("%lld\n%lld\n%lld\n%lld\n%lld\n", a, b, c, d, e);
+    init_prime();
+    for (int i = 1; i <= prime[0]; i++) {
+        printf("%d\n", prime[i]);
+    }
     return 0;
 }

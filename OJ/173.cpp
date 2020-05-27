@@ -6,10 +6,12 @@
  ************************************************************************/
 
 #include<iostream>
+#include<stdio.h>
 using namespace std;
 #define max_n 10000
 
 char str[max_n + 5];
+
 int is_alphabet (char x) {
     return ('a' <= x && x <= 'z') || ('A' <= x && x <= 'Z');
 } 
@@ -26,15 +28,16 @@ int is_character (char x) {
     return (!(is_alphabet(x)) && !(is_number(x)) && !(is_space(x)));
 }
 
-void cal(char *str) {
-    int alp = 0, num = 0, spa = 0,  cha = 0;
+void cal(const char *str) {
+    int cnt[4] = {0};
     for (int i = 0; str[i]; i++) {
-        alp += is_alphabet(str[i]);
-        num += is_number(str[i]);
-        spa += is_space(str[i]);
-        cha += is_character(str[i]);
+        char c = str[i];
+        cnt[0] += is_alphabet(c);
+        cnt[1] += is_number(c);
+        cnt[2] += is_space(c);
+        cnt[3] += is_character(c);
     }
-    
+        
     for (int i = 0; i < 4; i++) {
         i && cout << " ";
         cout << cnt[i];
@@ -43,7 +46,7 @@ void cal(char *str) {
 
 int main() {
     while (~scanf("%[^\n]s", str)) {
-       cal(str);
+        cal(str);
         getchar();
     }
     return 0;
