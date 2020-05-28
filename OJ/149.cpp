@@ -5,15 +5,15 @@
 	> Created Time: Mon May 18 23:07:19 2020
  ************************************************************************/
 
-#include<stdio.h>
+#include<a>
 #include <string.h>
 int main(){
-    char str[10][55];
-    int len = 0;
+    string str;
+    int len;
     for (int i = 0; ; i++) {
-        scanf("%s", str[i]);
-        len +=  strlen(str[i]);
+        cin >> str;
+        len = str.size();
     }
-    printf("%d\n", len);
+    cout << len << endl;
     return 0;
 }
