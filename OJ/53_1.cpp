@@ -7,8 +7,9 @@
 
 #include<iostream>
 #include<math.h>
+#include<stdio.h>
 using namespace std;
-#define max_n 10000
+#define max_n 1000000
 
 int f[max_n + 5] = {0};
 
