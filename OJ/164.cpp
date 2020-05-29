@@ -1,19 +1,18 @@
 /*************************************************************************
-	> File Name: 149.cpp
+	> File Name: 164.cpp
 	> Author: 
 	> Mail: 
-	> Created Time: Mon May 18 23:07:19 2020
+	> Created Time: Fri May 29 14:00:54 2020
  ************************************************************************/
 
-#include <iostream>
-#include<cstring>
+#include<iostream>
 using namespace std;
 
-int main(){
-    string str;
-    while(cin >> str) {
-        
-    }
-    cout << str.size() << endl;
+int main () {
+    int n, m, box;
+    cin >> n >> m;
+    box = n / m;
+    if (n % m) box++;
+    cout << box << endl;
     return 0;
 }

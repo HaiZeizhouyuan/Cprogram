@@ -1,19 +1,17 @@
 /*************************************************************************
-	> File Name: 149.cpp
+	> File Name: 162.cpp
 	> Author: 
 	> Mail: 
-	> Created Time: Mon May 18 23:07:19 2020
+	> Created Time: Fri May 29 13:55:14 2020
  ************************************************************************/
 
-#include <iostream>
-#include<cstring>
+#include<iostream>
+#include<cmath>
+#include<cstdio>
 using namespace std;
+#define PI acos(-1)
 
-int main(){
-    string str;
-    while(cin >> str) {
-        
-    }
-    cout << str.size() << endl;
+int main() {
+    printf("%.15lf\n", PI);
     return 0;
 }

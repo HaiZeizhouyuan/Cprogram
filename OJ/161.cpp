@@ -1,19 +1,20 @@
 /*************************************************************************
-	> File Name: 149.cpp
+	> File Name: 161.cpp
 	> Author: 
 	> Mail: 
-	> Created Time: Mon May 18 23:07:19 2020
+	> Created Time: Fri May 29 13:45:32 2020
  ************************************************************************/
 
-#include <iostream>
-#include<cstring>
+#include<iostream>
+#include<cmath>
+#include<cstdio>
 using namespace std;
 
 int main(){
-    string str;
-    while(cin >> str) {
-        
-    }
-    cout << str.size() << endl;
+    int x, n;
+    double sum;
+    cin >> x >> n;
+    sum = x * pow (1.06, n);
+    printf("%.6lf\n", sum);
     return 0;
 }

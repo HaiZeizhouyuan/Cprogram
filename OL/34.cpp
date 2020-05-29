@@ -13,7 +13,7 @@ using namespace std;
 int fac[10];
 
 
-void init(int n) {
+void init() {
     fac[0] = 1;
     for(int i = 1; i <= 9; i++) fac[i] = i * fac[i -1];
     return ;
@@ -28,6 +28,7 @@ int is_val(int n) {
     return sum == n;
 } 
 int main(){
+    init();
     int sum = 0;
     for (int i = 3; i <= max_n; i++) {
         sum += (is_val(i) ? i : 0);
