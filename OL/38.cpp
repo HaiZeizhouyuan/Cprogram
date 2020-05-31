@@ -10,7 +10,7 @@
 using namespace std;
 #define max_n 100000
 
-inline int dight(int x) {
+inline int dight(long long x) {
     if (x == 0) return 1;
     return floor(log10(x)) + 1;
 }
