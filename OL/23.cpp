@@ -6,6 +6,7 @@
  ************************************************************************/
 
 #include<iostream>
+#include<cstring>
 using namespace std;
 #define max_n 28123
 int prime[max_n + 5] = {0};
@@ -20,14 +21,14 @@ void init () {
         }
         for (int j = 1; j <= prime[0]; j++) {
             if (i * prime[j] > max_n) break;
-            prime[j * prime[i]] = i;
-            if (j % prime[i] == 0) {
-                cnt[j * prime[i]] = cnt[i] * prime[j];
-                f[j * prime[i]] = f[i] * (cnt[i] * prime[j] - 1) / (cnt[i] - 1);
+            prime[i * prime[j]] = 1;
+            if (i % prime[j] == 0) {
+                cnt[i * prime[j]] = cnt[i] * prime[j];
+                f[i * prime[j]] = f[i] * (cnt[i] * prime[j] - 1) / (cnt[i] - 1);
                 break;
             } else {
-                cnt[j * prime[i]] = prime[i] * prime[i]
-                f[j * prime[i]] = f[prime[i]] *f[j];
+                cnt[i * prime[j]] = prime[j] * prime[j];
+                f[i * prime[j]] = f[prime[j]] *f[i];
             }
         }
     }
@@ -36,6 +37,23 @@ void init () {
 
 
 int main () {
-
+    init();
+    memset(prime, 0, sizeof(prime));
+    for (int i = 2; i <= max_n; i++) {
+        f[i] -= i;
+        if (f[i] <= i) continue;
+        f[++f[0]] = i;
+        prime[i] = 1;
+    }
+    int sum = 1;
+    for (int i = 2; i <= max_n; i++) {
+        int flag = 1;
+        for (int j = 1; flag && f[j] < i; j++) {
+            flag = !prime[i - f[j]];
+        }
+        if (!flag) continue;
+        sum += i;
+    }
+    cout << sum << endl;
     return 0;
 }
