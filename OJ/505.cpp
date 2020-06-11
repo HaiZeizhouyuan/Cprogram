@@ -12,8 +12,8 @@ using namespace std;
 #define max_n 100000
 string str[max_n + 5];
 
-int cmp(string a, string b){
-    return a > b;
+bool cmp(string a, string b){
+    return a + b > b + a;
 }
 int main() {
     int n;
