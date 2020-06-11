@@ -22,7 +22,7 @@ bool cmp1 (Cow a, Cow b) {
     return a.max > b.max;
 }
 bool cmp2 (Sun a, Sun b) {
-    return a.num > b.num;
+    return a.num < b.num;
 }
 int main() {
     int c, l, sumcow;
