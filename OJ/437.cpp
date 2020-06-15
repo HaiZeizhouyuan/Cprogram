@@ -1,17 +1,19 @@
 /*************************************************************************
-	> File Name: test.cpp
+	> File Name: 437.cpp
 	> Author: 
 	> Mail: 
-	> Created Time: Thu Jun  4 13:35:42 2020
+	> Created Time: Mon Jun 15 20:46:08 2020
  ************************************************************************/
 
 #include<iostream>
-#include<cstring>
 using namespace std;
 
-int main(){
+int main() {
     int a, b;
     cin >> a >> b;
-    cout << a << endl;
+    int mymoney = 10 * a + b;
+    int itmoney = 2 * 10 + 6;
+    cout << mymoney / itmoney << endl;
+
     return 0;
 }
