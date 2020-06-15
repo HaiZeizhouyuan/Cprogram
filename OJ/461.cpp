@@ -5,18 +5,35 @@
 	> Created Time: Wed Jun 10 14:15:42 2020
  ************************************************************************/
 
-#include<stdio.h>
-#include<stdlib.h>
+#include<iostream>
+#include<sstream>
+using namespace std;
+
+
+typedef struct student {
+    char kind;
+    string grade;
+} Student;
+
+Student stu[1000];
+
+int strnum(string);
 int main () {
     int n, num = 0, sum = 0;
-    scanf("%d", &n);
-    char grad,a;
-    char inf[4];
+    cin >> n;
     for (int i = 0; i < n; i++) {
-        scanf("%s%s%s", &grad,&a, inf);
-        if (grad == 'C') num += 1;
-        else sum += atoi(inf);
+        cin >> stu[i].kind >> stu[i].grade;
+        string temp = stu[i].grade;
+        if (stu[i].kind == 'C') num += 1;
+        else sum += strnum(temp);
     }
-    printf("%d %d\n", num, sum);
+    cout << num << " " << sum / (n - num) << endl;
     return 0;
+}
+
+int strnum(string s) {
+    int num;
+    stringstream ss(s);
+    ss >> num;
+    return num;
 }

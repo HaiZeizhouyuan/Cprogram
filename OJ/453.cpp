@@ -12,17 +12,17 @@ using namespace std;
 
 int a[max_n + 5];
 int main () {
-    int n, k;
+    int n, k, num = 1;
     cin >> n >> k;
     for (int i = 0; i < n; i++) {
         cin >> a[i];
     }
     sort(a, a + n);
-    int min = 0, num = 0;
-    for (int i = 0; i < n, num < k; i++) {
-        if (a[i] > min) min = a[i]; num++;
+    if (!(k - 1)) cout << a[0] << endl;
+    for (int i = 1; i < n && k - num; i++) {
+        if (a[i] - a[i - 1]) num += 1;
+        if (!(num - k)) cout << a[i] << endl; 
     }
 
-    cout << min << endl;
     return 0;
 }
