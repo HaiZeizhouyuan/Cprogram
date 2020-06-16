@@ -9,37 +9,31 @@
 using namespace std;
 
 typedef struct windows{
-    int l, r, w, d;
-} Window;
+    int x1, x2, y1, y2;
+} Windows;
 
-Window wind[5];
-
-int init(int, int);
+Windows w1, w2;
+int init(Windows, Windows);
 
 int main () {
-    for (int i = 1; i < 3; i++) {
-        cin >> wind[i].l >> wind[i].r >> wind[i].w >> wind[i].d;
-    }
-    int ret1 = init(1, 2), ret2 = init (2, 1), ret;
-    if (ret1 == 0 && ret2 != 0) ret = ret2;
-    if (ret2 == 0 && ret1 != 0) ret = ret1;
-    if (ret1 != 0 && ret2 != 0) ret = ret1;
-    else ret = 0;
-    cout << ret << endl;
-
+    cin >> w1.x1 >> w1.x2 >> w1.y1 >> w1.y2;
+    cin >> w2.x1 >> w2.x2 >> w2.y1 >> w2.y2;
+    cout << init(w1, w2) << endl;
     return 0;
 }
 
-int init (int i, int j ) {
-    int l1 = wind[i].l, r1 = wind[i].r, w1 = wind[i].w, d1 = wind[i].d;
-    int l2 = wind[j].l, r2 = wind[j].r, w2 = wind[j].w, d2 = wind[j].d; 
-    if ((w1 > w2) && (w1 < d2)) {
-        if ((l1 > l2) && (l1  < r2)) return (r2 - l1) * (d2 - w1);
-        if ((r1 > l2) && (r1 < r2)) return  (r1 - l2) * (d2 - w1);
-    }
-    if ((d1 > w2) && (d1 < d2)) {
-        if ((l1 > l2) && (l1 < r2)) return (r2 - l1) * (d1 - w2);
-        if ((r1 > l2) && (r1 < r2)) return (r1 - l2) * (d1 - w2);
-    }
-    else  return 0;
+int init (Windows w1, Windows w2 ) {
+    int length ,height;
+    if (w1.x1 < w2.x1 && w2.x1 < w1.x2 && w1.x2 < w2.x2 ) length = w1.x2 - w2.x1;
+    else if (w1.x1 > w2.x1 && w1.x2 < w2.x2) length = w1.x2 - w1.x1;
+    else if (w2.x1 < w1.x1 && w1.x1 < w2.x2 && w2.x2 < w1.x2) length = w2.x2 -w1.x1;
+    else if (w2.x1 > w1.x1 && w2.x2 < w1.x2) length = w2.x2- w2.x1;
+    else length = 0;
+    
+    if (w1.y1 < w2.y1 && w2.y1 < w1.y2 && w1.y2 < w2.y2 ) height = w1.y2 - w2.y1;
+    else if (w1.y1 > w2.y1 && w1.y2 < w2.y2) height = w1.y2 - w1.y1;
+    else if (w2.y1 < w1.y1 && w1.y1 < w2.y2 && w2.y2 < w1.y2) height = w2.y2 -w1.y1;
+    else if (w2.y1 > w1.y1 && w2.y2 < w1.y2) height = w2.y2- w2.y1;
+    else height = 0;
+    return length * height;
 }
