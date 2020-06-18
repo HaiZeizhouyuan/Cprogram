@@ -10,69 +10,46 @@
 using namespace std;
 #define max_n 50000
 
-typedef struct cow {
-    int starttime, endtime, node, num, pre, next;
-} Cow;
+typedef struct cows{
+    int st, et, node, loc;
+} Cows;
 
-void init(int, Cow *, int &sum);
-void output(Cow *, int, int);
-Cow cow[max_n + 5];
-
-bool cmp1(Cow a, Cow b) {
-    if (a.starttime - b.starttime) return a.starttime < b.starttime;
-    return a.endtime < b.endtime;
+Cows cows[max_n + 5];
+bool cmp1(Cows a, Cows b){
+    if (a.st == b.st) return a.loc < b.loc;
+    else return a.st < b.st;
 }
-
-bool cmp2(Cow a, Cow b) {
-    return a.node < b.node;
+bool cmp2(Cows a, Cows b) {
+    return a.loc < b.loc;
 }
 int main() {
-    int n, sum = 0;
+    int n;
     cin >> n;
     for (int i = 0; i < n; i++) {
-        cin >> cow[i].starttime >> cow[i].endtime;
-        cow[i].num = 0;
-        cow[i].pre = 0;
-        cow[i].next = 0;
-        cow[i].node = i;
+        cin >> cows[i].st >> cows[i].et;
+        cows[i].node = 0;
+        cows[i].loc = i;
     }
-    sort(cow, cow + n, cmp1);
-    init (n, cow, sum);
-    sort(cow, cow + n, cmp2);
-    output(cow, sum, n);
-
-}
-
-void init(int n, Cow *cow, int &sum) {
+    sort(cows, cows + n, cmp1);
+    int sum = 0, k = 1;
     for (int i = 0; i < n; i++) {
-        int flag1 = 1, flag2 = 1;
-        if (!cow[i].num) {
-            sum += 1; 
-            cow[i].num = sum;
-        } 
-        for (int j = i + 1; j < n && (flag1 + flag2); j++) {
-            if (cow[j].num) continue;
-            if (!cow[i].next && flag1 && (cow[i].endtime < cow[j].starttime)) {
-                cow[j].num = cow[i].num;
-                cow[i].next = 1;
-                cow[j].pre = 1;
-                flag1 = 0;
-            }
-            if (!cow[i].pre && flag2 && (cow[i].starttime > cow[j].endtime)) {
-                cow[j].num = cow[i].num;
-                cow[i].pre = 1;
-                cow[j].next = 1;
-                flag2 = 0;
+        if (cows[i].node == 0) {
+            cows[i].node += k;
+            sum += 1;
+            k += 1;
+        }
+        for (int j = i + 1; j < n; j++) {
+            if (cows[j].node) continue;
+            if (cows[i].et < cows[j].st) {
+                cows[j].node = cows[i].node;
+                break;
             }
         }
     }
-    return ;
-}
-
-void output (Cow * cow, int sum, int n) {
+    sort(cows, cows + n, cmp2);
     cout << sum << endl;
     for (int i = 0; i < n; i++) {
-        cout << cow[i].num << endl;
+        cout << cows[i].node << endl;
     }
-    return ;
+    return 0;
 }
