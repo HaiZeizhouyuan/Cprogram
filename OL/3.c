@@ -9,5 +9,5 @@ int main(){
         i++;
     }
     if (num != 1) ans = num;
-    printf("lld\n", ans);
+    printf("%lld\n", ans);
 }
