@@ -19,6 +19,7 @@ void init () {
         if (!prime[i]) {
             prime[++prime[0]] = i;
             f[i] = i + 1;
+            //cnt[i] = 2;
             cnt[i] = i * i;
         } 
         for (int j = 1; j <= prime[0]; j++) {
