@@ -25,10 +25,10 @@ int get_len(int d) {
     return 0;
 }
 int main () {
-    int ans, len;
+    int ans = 0, len = 0;
     for (int i = 2; i < max_n; i++) {
         int temp = get_len(i);
-        if (temp > ans) {
+        if (temp > len) {
             ans = i;
             len = temp;
         }

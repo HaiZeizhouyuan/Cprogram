@@ -1,8 +1,8 @@
 /*************************************************************************
-	> File Name: 24.cpp
+	> File Name: 24_protice1.cpp
 	> Author: 
 	> Mail: 
-	> Created Time: Sun May 31 19:08:26 2020
+	> Created Time: Tue Jul 14 15:36:46 2020
  ************************************************************************/
 
 #include<iostream>
@@ -16,7 +16,7 @@ int num[max_n + 5];
 void init() {
     f[0] = 1;
     num[0] = 1;
-    for (int i = 1; i < max_n; i++) {
+    for (int i = 1; i < max_n; i++){
         f[i] = i * f[i - 1];
         num[i] = 1;
     }
@@ -26,7 +26,7 @@ void init() {
 int get_num(int k, int val, int &x) {
     int step = k / val;
     x = 0;
-    for (int t = 0; t <= step; x += (t <= step)  ){
+    for (int t = 0; t <= step; x += (t <= step)) {
         t += num[x];
     }
     num[x] = 0;
@@ -34,12 +34,12 @@ int get_num(int k, int val, int &x) {
     return k;
 }
 
+
 int main () {
     init();
     int k = max_m - 1, x;
     for (int i = max_n - 1; i >= 0; i--) {
         k = get_num(k, f[i], x);
-        //cout << i << ":"<< x << ":" << f[i] << " ";
         cout << x;
     }
     cout << endl;
