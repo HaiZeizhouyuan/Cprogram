@@ -22,6 +22,7 @@ int main(){
     printf("(a + 1)->x = %d\n", (a + 1)->x);
     printf("(p + 1)->x = %d\n", (p + 1)->x);
     printf("(&p[0] + 1)->x = %d\n",(&p[0] + 1)->x);
+    printf("\n");
     return 0;
 }
 

@@ -6,18 +6,28 @@
  ************************************************************************/
 #include <stdio.h>
 #include <string.h>
-int main() {
-    char str[505];
-    scanf("%s", str);
-    char arr[32] = {0}, bits[32] = {0};
-    int len = strlen(str);
-    for (int i = 1; i <=len ; i++) {
-        arr[i % 32] += str[i - 1];
+#include <stdlib.h>
+#include <dirent.h>
+int main(void) {
+    struct dirent **entry_list;
+    int count;
+    int i;
+ 
+    count = scandir(".", &entry_list, 0, alphasort);
+    if (count < 0) {
+        perror("scandir");
+        return EXIT_FAILURE;
     }
-    for (int i = 0; i < 32; i++) {
-        bits[i] = (arr[31 - i]) ^ (arr[i] << 1);
-        printf("%c",   bits[i] % 85 + 34 );      
+    for (i = 0; i < count; i++) {
+        struct dirent *entry;
+        entry = entry_list[i];
+        printf("%s %s\n", entry->d_name, entry->);
+        free(entry);
     }
-    printf("\n\n\n");
+    free(entry_list);
+ 
     return 0;
 }
+
+
+
