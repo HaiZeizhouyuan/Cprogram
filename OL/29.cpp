@@ -12,11 +12,12 @@ using namespace std;
 #define max_n 10000
 #define max_m 100
 struct Tuple {
-    int p, a;// p是最小素因子，a是次幂
-} arr[max_n + 5][4];
+    int p, a;// p是最小素因子，这个最小素子的次幂
+} arr[max_n + 5][4]; // 2 * 3 * 5 * 7 = 210 > 100; 2 * 3 * 5 = 30
 
 int prime[max_m + 5] = {0};
 
+//求最小素因子
 void primescreen () {
     for (int i = 2; i <= max_m; i++) {
         if (prime[i]) continue;

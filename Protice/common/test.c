@@ -18,6 +18,6 @@ int main() {
         bits[i] = (arr[31 - i]) ^ (arr[i] << 1);
         printf("%c",   bits[i] % 85 + 34 );      
     }
-    printf("\n");
+    printf("\n\n\n");
     return 0;
 }

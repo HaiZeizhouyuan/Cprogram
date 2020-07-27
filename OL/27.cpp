@@ -24,7 +24,7 @@ void primescreen() {
     }
     return ;
 }
-
+//因为n会大于１０００
 int is_val(long long n) {
     for (long long i = 2; i * i <= n; i++) {
         if (n % i == 0) return 0;
@@ -34,7 +34,7 @@ int is_val(long long n) {
 
 int get_len(int a, int b) {
     int cnt = 0;
-    for (int n = 0; ; n++) {
+    for  (int n = 0; ; n++) {
         long long temp = n * n + a * n + b;
         if (temp < 0) break;
         if (!is_val(temp)) break;
@@ -46,7 +46,7 @@ int get_len(int a, int b) {
 int main() {
     primescreen();
     long long x, y, len = 0;
-    for (int b = 2; b <= 1000; b++){
+    for (int b = 2; b <= 1000; b++){  // n * n + a * n + b >= 2 => 当n = 0时，b >= 2;
         if (is_prime[b]) continue;
         for (int a = -999; a < 1000; a += 2) {
             if (a + b + 1 < 2 || is_prime[a + b + 1]) continue;
