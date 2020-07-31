@@ -12,14 +12,21 @@
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <sys/teyps.h>
+#include <sys/types.h>
 #include <sys/stat.h>
 #include "color.h"
-
+#include <pwd.h>
+#include <grp.h>
+#include <time.h>
+#include <math.h>
+#include <dirent.h>
+#include <sys/ioctl.h>
+#include <math.h>
 #ifdef _D
 #define DBG(fmt, args...) printf(fmt, ##args);
 #else 
 #define DBG(fmt, args...) 
 #endif
+
 #endif
 

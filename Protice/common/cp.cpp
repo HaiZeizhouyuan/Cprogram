@@ -14,7 +14,7 @@
 #include <string.h>
 #define MAX_BUFF 1024
 #include "head.h"
-
+//./a.out file1 file2
 int main (int argc, char **argv) {
     if(argc != 3) {
         fprintf(stderr, " Usage : %s src dest\n", argv[0]);
@@ -26,7 +26,7 @@ int main (int argc, char **argv) {
         perror("open()");
         exit(1);
     }
-
+;
     if ((fd_out = creat(argv[2], 0666)) == -1) {
         perror("creat()");
         exit(1);

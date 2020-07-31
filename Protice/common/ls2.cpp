@@ -65,7 +65,9 @@ int cmp_name(const void* _a, const void* _b) {
 void update_color(mode_t mode) {
     bg_c = 0;
     fg_c = 31;
-    if (mode & (S_IXGRP | S_IXUSR | S_IXOTH)) fg_c = 32; //或if (mode & 0111);
+    if (mode & (S_IXGRP | S_IXUSR | S_IXOTH)) {
+        fg_c = 32;
+    } //或if (mode & 0111);
     switch(mode & S_IFMT) {
         case S_IFDIR:
             fg_c = 34;
@@ -73,6 +75,80 @@ void update_color(mode_t mode) {
         case S_IFLNK:
             fg_c = 35;
             break;
+    }
+    return ;
+}
+
+void size_window(char names[][MAXNAME], int cnt, int *row, int *col) {
+    struct winsize size;
+    int len[cnt], max = 0, total_len = 0;
+    memset(len, 0, sizeof(int) * cnt);
+    if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &size) < 0) {
+        perror("ioctl()");
+        exit(1);
+    }
+    DBG(GREEN"<Debug>"NONE" : win.row = %d, win.col = %d\n", size.ws_row, size.ws_col);
+    for (int i = 0; i < cnt; i++) {
+        len[i] = strlen(names[i]);
+        if (max < len[i]) max = len[i];
+        total_len += len[i] + 1;
+    }
+    if (max + 1 >= size.ws_col) {
+        *row = cnt;
+        *col = 1;
+        return ;
+    }
+    if (total_len <= size.ws_col) {
+        *row = 1;
+        *col = cnt;
+        printf("zzzzzzzzzzzzz ");
+        return ;
+    }
+    int try_begin = 0;
+    for (int i = 0, tmp = 0; i < cnt; i++) {
+        tmp += (len[i] + 1);//此时的长度
+        if (tmp >= size.ws_col) {
+            try_begin = i;
+            break;
+        }
+    }
+    for (int i = try_begin; ; i--) {
+        int *wide = (int *)malloc(sizeof(int) * i);//每列的宽度
+        memset(wide, 0, sizeof(int) * i);
+        *row = (int)ceil(cnt * 1.0 / i);//上取整
+        int sum = 0;
+        for (int x = 0; x < i; x++) {//x是列
+            for (int y = x * *row; y < (x + 1) * *row && y < cnt; y++) {
+                if (wide[x] < len[y]) wide[x] = len[y];
+            }
+            sum += (wide[x] + 1);
+        }
+        if (sum > size.ws_col) continue;
+        if (sum <= size.ws_col) {
+            *col = i;
+            break;
+        }
+    }
+}
+
+void show_files(char names[][MAXNAME], int cnt, int row, int col) {
+    int wide[col];
+    memset(wide, 0, sizeof(int) * col);
+    struct stat tmp_st;
+    for (int i = 0; i < col; i++) {
+        for (int j = (i * row); j < (i + 1) * row && j < cnt; j++) {
+            if (wide[i] < strlen(names[j])) wide[i] = strlen(names[j]);
+        }
+    }
+
+    for (int i = 0; i < row; i++) {
+        for (int j = i; (j <= i + (row * col)) && j < cnt; j = j + row) {
+            lstat(names[j], &tmp_st);
+            update_color(tmp_st.st_mode);
+            int wide_tmp = wide[j / row];
+            printf("\033[%d;%dm%-*s \033[0m", bg_c, fg_c, wide_tmp, names[j]);
+        }
+        printf("\n");
     }
 }
 
@@ -104,19 +180,18 @@ void do_ls(char *dir) {
         }
         qsort(names, cnt, MAXNAME, cmp_name);
         chdir(dir);//跳转目录，改变路径
-        struct stat st_tmp;
         if (l_flag == 1) {
             for (int i = 0; i < cnt; i++) {
+                struct stat st_tmp;
                 lstat(names[i], &st_tmp);
                 show_info(names[i], &st_tmp);
                 printf("\n");
             }
         } else {
-            for (int i = 0; i < cnt; i++) {
-                lstat(names[i], &st_tmp);
-                update_color(st_tmp.st_mode);
-                printf("\033[%d;%dm%10s\033[0m ", bg_c, fg_c, names[i]);
-            }
+            int row, col;
+            size_window(names, cnt, &row, &col);
+            DBG(GREEN"<Dbuge>"NONE" : row = %d, col = %d\n", row, col);
+            show_files(names, cnt, row, col);
         }
     }
     return ;
@@ -168,6 +243,7 @@ void mode_to_str(mode_t mode, char *modestr) {
     if (S_IWOTH & mode) modestr[8] = 'w';
     if (S_IXOTH & mode) modestr[9] = 'x';
     update_color(mode);
+    printf("%d\n", fg_c);
 }
 
 
@@ -181,6 +257,6 @@ void show_info (char *filename, struct stat *st) {
     printf("%10s ", gid_to_name(st->st_gid));
     printf("%10ld ", st->st_size);
     printf("%.15s ", 4 + ctime(&st->st_mtime));
-    printf("\033[%d;%dm%s\033[0m ", bg_c, fg_c,filename);
+    printf("\033[%d;%dm%s\033[0m ",bg_c, fg_c, filename);
 }
 
