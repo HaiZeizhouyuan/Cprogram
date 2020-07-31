@@ -17,18 +17,28 @@ int main(int argc, char **argv) {
                 m_flag = 1;
                 break;
             defaul :
-                fprintf(stderr, "Usage : %s [git commit -m] !\n", argv[0]);
+                fprintf(stderr, "Usage : ./multi_process [-m message]\n");
                 exit(1);
         }
     }
 
     if (m_flag == 1) {
         if (strcmp(argv[2], "git") != 0) {
-            fprintf(stderr, "No git");
+            printf("No git\n");
+        }
+        if (strcmp(argv[3], "commit") != 0) {
+            printf("No commit\n");
         }
         printf("have m\n");
     } else {
-        printf("no m\n");
+        if (strcmp(argv[1], "git") != 0) {
+            printf("No git\n");
+        }
+        if (strcmp(argv[2], "commit") != 0) {
+            printf("No commit\n");
+        }
+        fprintf(stderr, "Usage : ./multi_process [-m message]\n");
+        exit(1);
     }
     printf("argc : %d\n", argc);
     printf("argv[1] : %s\n", argv[1]);
