@@ -16,7 +16,7 @@ void output_name(int n){
     for (int i = 0; i < n; ) {
         int index = rand() % max_n;
         if (flag[index]) continue;
-        printf("%s", name[index]);
+        printf("%s\n", name[index]);
         flag[index] = 1, i++;
     }
     printf("\n");
@@ -40,7 +40,7 @@ int main(int argc, char *argv[]){
             printf("total num: %d\n", max_n);
             exit(0);
         }
-        output_name(0);
+        output_name(n);
     }
     return 0;
 }

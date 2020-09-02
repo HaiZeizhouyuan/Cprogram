@@ -12,7 +12,6 @@ using namespace std;
 
 int fac[10];
 
-
 void init() {
     fac[0] = 1;
     for(int i = 1; i <= 9; i++) fac[i] = i * fac[i -1];

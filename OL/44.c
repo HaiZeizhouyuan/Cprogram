@@ -9,7 +9,7 @@
 #include <inttypes.h>
 
 typedef long long int1;
-inline int1  p(int1 n) {
+static inline int1  p(int1 n) {
     return n * (3 * n - 1) / 2;
 }
 int1 binary_search (int1 (*func)(int1), int1 l, int1 r, int1 x) {
